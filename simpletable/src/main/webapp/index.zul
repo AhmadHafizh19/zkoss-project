@@ -1,0 +1,6 @@
+<zk>
+	<window apply="org.zkoss.bind.BindComposer"
+			viewModel="@id('vm')@init('com.fif.simpletable.MyViewModel')">
+		<include src="layout.zul"/>
+	</window>
+</zk>

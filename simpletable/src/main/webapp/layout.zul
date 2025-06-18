@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vlayout spacing="24px" style="padding:32px; font-family:'Segoe UI', sans-serif;">
+
+    <!-- Header -->
+    <label value="👥 Employee Management System"
+           style="font-size:26px; font-weight:600; color:#333; margin-bottom:10px;" />
+    <separator bar="true" height="1px" />
+
+    <!-- Search Section -->
+    <groupbox mold="3d" width="100%" style="background:#fff; border-radius:8px;">
+        <caption label="🔍 Search" style="font-weight:bold;"/>
+        <hlayout spacing="12px" style="padding:16px;">
+            <textbox value="@bind(vm.searchKeyword)" placeholder="Search by name or email..." width="300px"/>
+            <button label="Search" iconSclass="z-icon-search" sclass="btn btn-primary"
+                    onClick="@command('search')"/>
+        </hlayout>
+    </groupbox>
+
+    <!-- Add Employee -->
+    <groupbox mold="3d" width="100%" style="background:#fff; border-radius:8px;">
+        <caption label="➕ Add Employee" style="font-weight:bold;"/>
+        <hlayout spacing="12px" style="padding:16px;">
+            <textbox value="@bind(vm.editingEmployee.npk)" placeholder="NPK" width="100px"/>
+            <textbox value="@bind(vm.editingEmployee.name)" placeholder="Full Name" width="150px"/>
+            <textbox value="@bind(vm.editingEmployee.email)" placeholder="Email Address" width="200px"/>
+            <textbox value="@bind(vm.editingEmployee.phoneNumber)" placeholder="Phone Number" width="140px"/>
+            <button label="Add" iconSclass="z-icon-plus" sclass="btn btn-primary"
+                    onClick="@command('add')"/>
+        </hlayout>
+    </groupbox>
+
+    <!-- Employee List -->
+    <groupbox mold="3d" width="100%" style="background:#fff; border-radius:8px;">
+        <caption label="📋 Employee List" style="font-weight:bold;"/>
+        <grid model="@load(vm.filteredEmployees)" width="100%">
+            <columns>
+                <column label="NPK" hflex="1"/>
+                <column label="Name" hflex="2"/>
+                <column label="Email" hflex="3"/>
+                <column label="Phone" hflex="2"/>
+                <column label="Action" hflex="3"/>
+            </columns>
+            <rows>
+                <template name="model" var="employee">
+                    <row>
+                        <cell>
+                            <textbox value="@bind(employee.npk)"
+                                     visible="@load(vm.selectedEmployee eq employee)"/>
+                            <label value="@load(employee.npk)"
+                                   visible="@load(vm.selectedEmployee ne employee)"/>
+                        </cell>
+                        <cell>
+                            <textbox value="@bind(employee.name)"
+                                     visible="@load(vm.selectedEmployee eq employee)"/>
+                            <label value="@load(employee.name)"
+                                   visible="@load(vm.selectedEmployee ne employee)"/>
+                        </cell>
+                        <cell>
+                            <textbox value="@bind(employee.email)"
+                                     visible="@load(vm.selectedEmployee eq employee)"/>
+                            <label value="@load(employee.email)"
+                                   visible="@load(vm.selectedEmployee ne employee)"/>
+                        </cell>
+                        <cell>
+                            <textbox value="@bind(employee.phoneNumber)"
+                                     visible="@load(vm.selectedEmployee eq employee)"/>
+                            <label value="@load(employee.phoneNumber)"
+                                   visible="@load(vm.selectedEmployee ne employee)"/>
+                        </cell>
+                        <cell>
+                            <hlayout spacing="6px">
+                                <button label="" iconSclass="z-icon-edit" tooltiptext="Edit"
+                                        sclass="btn btn-info" onClick="@command('edit', employee=employee)"
+                                        visible="@load(vm.selectedEmployee ne employee)"/>
+                                <button label="" iconSclass="z-icon-save" tooltiptext="Save"
+                                        sclass="btn btn-success" onClick="@command('update')"
+                                        visible="@load(vm.selectedEmployee eq employee)"/>
+                                <button label="" iconSclass="z-icon-times" tooltiptext="Cancel"
+                                        sclass="btn btn-warning" onClick="@command('cancel')"
+                                        visible="@load(vm.selectedEmployee eq employee)"/>
+                                <button label="" iconSclass="z-icon-trash" tooltiptext="Delete"
+                                        sclass="btn btn-danger" onClick="@command('delete', employee=employee)"
+                                        visible="@load(vm.selectedEmployee ne employee)"/>
+                            </hlayout>
+                        </cell>
+                    </row>
+                </template>
+            </rows>
+        </grid>
+    </groupbox>
+
+</vlayout>

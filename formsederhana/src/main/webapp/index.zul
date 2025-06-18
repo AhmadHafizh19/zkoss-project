@@ -1,0 +1,41 @@
+<zk>
+	<style>
+		.z-notification.z-notification-bottom-center {
+		bottom: 80px !important;
+		}
+	</style>
+	<window apply="org.zkoss.bind.BindComposer"
+			viewModel="@id('vm')@init('com.fif.formsederhana.MyViewModel')"
+			validationMessages="@id('vmsgs')" width="400px" border="normal" title="Employee Input Form"
+			style="padding:32px 40px 32px 40px; margin:32px auto;">
+		<grid width="100%">
+			<rows>
+				<row>
+					<label value="Name:"/>
+					<textbox width="100%"/>
+				</row>
+				<row>
+					<label value="Position:"/>
+					<textbox width="100%"/>
+				</row>
+				<row>
+					<label value="Age:"/>
+					<intbox width="100%"/>
+				</row>
+				<row>
+					<label value="Email:"/>
+					<textbox width="100%"/>
+				</row>
+				<row>
+					<label value="Address:"/>
+					<textbox width="100%"/>
+				</row>
+				<row>
+					<cell colspan="2" style="text-align:right;">
+						<button label="Submit" onClick="@command('submit')" width="100px"/>
+					</cell>
+				</row>
+			</rows>
+		</grid>
+	</window>
+</zk>
