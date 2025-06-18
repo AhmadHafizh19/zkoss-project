@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zk>
+    <div style="min-height:100vh; background:#f4f6fb;">
+        <!-- Header -->
+        <div style="background:#2d3e50; color:#fff; padding:20px 32px; font-size:22px; font-weight:bold; letter-spacing:1px;">
+            Employee Management
+        </div>
+
+        <!-- Body Layout -->
+        <div style="display:flex; min-height:calc(100vh - 60px);">
+            <!-- Sidebar -->
+            <div style="width:220px; background:#fff; border-right:1px solid #e0e0e0; padding:32px 0 0 0;">
+                <vlayout spacing="16px" style="align-items:flex-start;">
+                    <label value="Dashboard" style="font-weight:bold; color:#2d3e50; margin-left:32px;"/>
+                    <label value="Employee" style="margin-left:32px; color:#2d3e50; opacity:0.7;"/>
+                </vlayout>
+            </div>
+
+            <!-- Content -->
+            <div style="flex:1; padding:32px 40px 40px 40px;">
+                <div style="max-width:1100px; margin:auto;">
+                    <div id="contentArea" self="@insert(content)"/>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div style="background:#2d3e50; color:#fff; text-align:center; padding:12px 0; font-size:14px; letter-spacing:1px;">
+            © 2025 Employee Management App
+        </div>
+    </div>
+</zk>
