@@ -40,8 +40,20 @@ public class EmployeeController extends SelectorComposer<Component> {
             item.appendChild(new Listcell(emp.getDivision()));
             item.appendChild(new Listcell(emp.getStatus()));
             Listcell actionCell = new Listcell();
-            Button delBtn = new Button("Delete");
-            delBtn.setSclass("btn btn-danger");
+            Button detailBtn = new Button();
+            detailBtn.setIconSclass("z-icon-search");
+            detailBtn.setTooltiptext("Detail");
+            detailBtn.setSclass("btn btn-info btn-icon");
+            detailBtn.addEventListener("onClick", event -> {
+                org.zkoss.zk.ui.Session sess = org.zkoss.zk.ui.Sessions.getCurrent();
+                sess.setAttribute("selectedEmployee", emp);
+                Executions.sendRedirect("employeeDetail.zul");
+            });
+            actionCell.appendChild(detailBtn);
+            Button delBtn = new Button();
+            delBtn.setIconSclass("z-icon-trash");
+            delBtn.setTooltiptext("Delete");
+            delBtn.setSclass("btn btn-danger btn-icon");
             delBtn.addEventListener("onClick", event -> {
                 employeeService.delete(emp);
                 refreshList(employeeService.getAll());
@@ -90,5 +102,10 @@ public class EmployeeController extends SelectorComposer<Component> {
             return;
         }
         refreshList(employeeService.search(keyword));
+    }
+
+    @Listen("onClick = #backBtn")
+    public void backToList() {
+        Executions.sendRedirect("employeeList.zul");
     }
 }

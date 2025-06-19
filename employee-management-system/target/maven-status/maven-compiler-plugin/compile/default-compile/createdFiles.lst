@@ -1,3 +1,4 @@
+com\fif\simpletable\controller\EmployeeDetailController.class
 com\fif\simpletable\model\Employee.class
-com\fif\simpletable\service\EmployeeService.class
 com\fif\simpletable\controller\EmployeeController.class
+com\fif\simpletable\service\EmployeeService.class

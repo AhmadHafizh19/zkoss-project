@@ -12,20 +12,20 @@ public class EmployeeService {
         List<Employee> list = (List<Employee>) Sessions.getCurrent().getAttribute(SESSION_EMP_LIST);
         if (list == null) {
             list = new ArrayList<>();
-            list.add(new Employee("71478", "NABILA KARIN", "nabilakarin02@gmail.com", "085694517410", "Data", "Active"));
-            list.add(new Employee("71484", "RAVEN DANIEL MARTIN", "ravendaniel0@gmail.com", "085212411844", "IT", "Menyerah"));
-            list.add(new Employee("71485", "ALICE SHIZUKA HUTAGAOL", "aliceshizuka@gmail.com", "082111160512", "Data", "Active"));
-            list.add(new Employee("71489", "VINCENT BHARATA", "vincentbharataa@gmail.com", "082113372884", "IT", "Menyerah"));
-            list.add(new Employee("71477", "MARCELLA AURELIA YATIJAN", "cellaureliay@gmail.com", "081219685684", "Data", "Active"));
-            list.add(new Employee("71482", "ADENAWATI HASIM", "denahsm1112@gmail.com", "081296647388", "IT", "Menyerah"));
-            list.add(new Employee("71483", "THEOPATRA KENNY SUSANTO", "theopatra.ks@gmail.com", "08970339996", "IT", "Menyerah"));
-            list.add(new Employee("71488", "AHMAD HAFIZH ASSAAD", "assaad.hafizh1904@gmail.com", "081249556050", "IT", "Menyerah"));
-            list.add(new Employee("71486", "AHMAD ARDRA DAMARJATI", "ahmad.ardra30@gmail.com", "081389955496", "Data", "Active"));
-            list.add(new Employee("71479", "LEONARD SEAN LEE", "slleonard86@gmail.com", "082111007107", "IT", "Menyerah"));
-            list.add(new Employee("71487", "MICHAELL ABELARD HENDRA", "michaellabelard24@gmail.com", "087786230620", "Data", "Active"));
-            list.add(new Employee("71476", "ANGELLA ANANTA BATUBARA", "angellaa59@gmail.com", "08181402003", "Data", "active"));
-            list.add(new Employee("71481", "WILLMAN SATRIA SITUMORANG", "willman.satria5@gmail.com", "085270819529", "IT", "Menyerah"));
-            list.add(new Employee("71480", "PUTRA ADHLI FALAH", "adhli.falah@gmail.com", "0895636701004", "IT", "Menyerah"));
+            list.add(new Employee("71478", "NABILA KARIN", "nabilakarin02@gmail.com", "085694517410", "Data", "Active", "/images/lala.png"));
+            list.add(new Employee("71484", "RAVEN DANIEL MARTIN", "ravendaniel0@gmail.com", "085212411844", "IT", "Menyerah", "/images/raven.png"));
+            list.add(new Employee("71485", "ALICE SHIZUKA HUTAGAOL", "aliceshizuka@gmail.com", "082111160512", "Data", "Active", "/images/alice.png"));
+            list.add(new Employee("71489", "VINCENT BHARATA", "vincentbharataa@gmail.com", "082113372884", "IT", "Menyerah", "/images/vincent.png"));
+            list.add(new Employee("71477", "MARCELLA AURELIA YATIJAN", "cellaureliay@gmail.com", "081219685684", "Data", "Active", "/images/cella.png"));
+            list.add(new Employee("71482", "ADENAWATI HASIM", "denahsm1112@gmail.com", "081296647388", "IT", "Menyerah", "/images/dena.png"));
+            list.add(new Employee("71483", "THEOPATRA KENNY SUSANTO", "theopatra.ks@gmail.com", "08970339996", "IT", "Menyerah", "/images/ken.png"));
+            list.add(new Employee("71488", "AHMAD HAFIZH ASSAAD", "assaad.hafizh1904@gmail.com", "081249556050", "IT", "Menyerah", "/images/hafizh.png"));
+            list.add(new Employee("71486", "AHMAD ARDRA DAMARJATI", "ahmad.ardra30@gmail.com", "081389955496", "Data", "Active", "/images/ardra.png"));
+            list.add(new Employee("71479", "LEONARD SEAN LEE", "slleonard86@gmail.com", "082111007107", "IT", "Menyerah", "/images/leon.png"));
+            list.add(new Employee("71487", "MICHAELL ABELARD HENDRA", "michaellabelard24@gmail.com", "087786230620", "Data", "Active", "/images/abel.png"));
+            list.add(new Employee("71476", "ANGELLA ANANTA BATUBARA", "angellaa59@gmail.com", "08181402003", "Data", "active", "/images/angel.png"));
+            list.add(new Employee("71481", "WILLMAN SATRIA SITUMORANG", "willman.satria5@gmail.com", "085270819529", "IT", "Menyerah", "/images/willman.png"));
+            list.add(new Employee("71480", "PUTRA ADHLI FALAH", "adhli.falah@gmail.com", "0895636701004", "IT", "Menyerah", "/images/adhli.png"));
             Sessions.getCurrent().setAttribute(SESSION_EMP_LIST, list);
         }
         return list;

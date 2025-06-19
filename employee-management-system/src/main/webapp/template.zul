@@ -1,32 +1,123 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zk>
-    <div style="min-height:100vh; background:#f4f6fb;">
-        <!-- Header -->
-        <div style="background:#2d3e50; color:#fff; padding:20px 32px; font-size:22px; font-weight:bold; letter-spacing:1px;">
-            Employee Management
-        </div>
+    <style>
+        html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow: auto;
+        background: #f8fafc;
+        display: flex;
+        flex-direction: column;
+        }
 
-        <!-- Body Layout -->
-        <div style="display:flex; min-height:calc(100vh - 60px);">
-            <!-- Sidebar -->
-            <div style="width:220px; background:#fff; border-right:1px solid #e0e0e0; padding:32px 0 0 0;">
-                <vlayout spacing="16px" style="align-items:flex-start;">
-                    <label value="Dashboard" style="font-weight:bold; color:#2d3e50; margin-left:32px;"/>
-                    <label value="Employee" style="margin-left:32px; color:#2d3e50; opacity:0.7;"/>
+        .header {
+        background: #1e293b;
+        color: white;
+        padding: 20px 32px;
+        font-size: 22px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+        flex-shrink: 0;
+        }
+
+        .footer {
+        background: #1e293b;
+        color: white;
+        text-align: center;
+        font-size: 14px;
+        padding: 14px 0;
+        flex-shrink: 0;
+        }
+
+        .sidebar {
+        background: #ffffff;
+        border-right: 1px solid #e5e7eb;
+        padding: 24px 16px;
+        height: 100%;
+        box-shadow: 0 3px 3px 3px rgba(0,0,0,0.05);
+        border-radius: 12px;
+        }
+
+        .sidebar-item {
+        display: block;
+        padding: 10px 16px;
+        margin-bottom: 10px;
+        color: #334155;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background 0.3s;
+        }
+
+        .sidebar-item:hover {
+        background: #f1f5f9;
+        }
+
+        .sidebar-item.active {
+        font-weight: bold;
+        background: #e2e8f0;
+        }
+
+        .main-content {
+        padding: 40px;
+        background: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 3px 3px 3px rgba(0,0,0,0.05);
+        overflow: auto;
+        min-height: calc(100vh - 175px);
+        }
+
+        .layout-wrapper {
+        padding: 32px;
+        display: flex;
+        gap: 32px;
+        flex-direction: row;
+
+        }
+
+        .sidebar-area {
+        width: 240px;
+        flex-shrink: 0;
+        }
+
+        .content-area {
+        flex: 1;
+        min-height: 78.7vh;
+        }
+    </style>
+
+    <!-- Header -->
+    <div sclass="header">
+        Employee Management
+    </div>
+
+    <!-- Main Area -->
+    <div sclass="layout-wrapper">
+
+        <!-- Sidebar -->
+        <div sclass="sidebar-area">
+            <div sclass="sidebar">
+                <vlayout spacing="8px">
+                    <label sclass="sidebar-item" value="Dashboard"/>
+                    <label sclass="sidebar-item active" value="Employee"/>
+                    <label sclass="sidebar-item" value="Attendance"/>
+                    <label sclass="sidebar-item" value="Settings"/>
                 </vlayout>
             </div>
+        </div>
 
-            <!-- Content -->
-            <div style="flex:1; padding:32px 40px 40px 40px;">
-                <div style="max-width:1100px; margin:auto;">
-                    <div id="contentArea" self="@insert(content)"/>
-                </div>
+        <!-- Content -->
+        <div sclass="content-area">
+            <div sclass="main-content">
+                <div id="contentArea" self="@insert(content)"/>
             </div>
         </div>
 
-        <!-- Footer -->
-        <div style="background:#2d3e50; color:#fff; text-align:center; padding:12px 0; font-size:14px; letter-spacing:1px;">
-            © 2025 Employee Management App
-        </div>
+    </div>
+
+    <!-- Footer -->
+    <div sclass="footer">
+        © 2025 Employee Management App
     </div>
 </zk>
