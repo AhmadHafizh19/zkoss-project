@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="template.zul"?>
+<zk>
+    <vlayout spacing="24px" style="padding:32px; font-family:'Segoe UI', sans-serif;"
+             apply="com.fif.simpletable.controller.EmployeeDetailController" self="@define(content)">
+        <groupbox mold="3d" width="100%" style="background:#fff; border-radius:8px;">
+            <caption label="👤 Employee Detail" style="font-weight:bold;"/>
+            <div style="display:flex; justify-content:center; align-items:center; margin-bottom:24px;">
+                <image id="photoImg" width="200px" height="200px" style="object-fit:cover; border-radius:12px; border:2px solid #eee; box-shadow:0 2px 8px #e0e0e0; display:block;"/>
+            </div>
+            <grid width="100%">
+                <rows>
+                    <row>
+                        <label value="NPK" width="120px"/>
+                        <textbox id="npkDetail" disabled="true" width="200px"/>
+                    </row>
+                    <row>
+                        <label value="Name"/>
+                        <textbox id="nameDetail" width="200px" disabled="true"/>
+                    </row>
+                    <row>
+                        <label value="Email"/>
+                        <textbox id="emailDetail" width="200px" disabled="true"/>
+                    </row>
+                    <row>
+                        <label value="Phone"/>
+                        <textbox id="phoneDetail" width="200px" disabled="true"/>
+                    </row>
+                    <row>
+                        <label value="Division"/>
+                        <combobox id="divisionDetail" width="200px" disabled="true">
+                            <comboitem label="Data" value="Data"/>
+                            <comboitem label="IT" value="IT"/>
+                        </combobox>
+                    </row>
+                    <row>
+                        <label value="Status"/>
+                        <combobox id="statusDetail" width="200px" disabled="true">
+                            <comboitem label="Active" value="Active"/>
+                            <comboitem label="Inactive" value="Inactive"/>
+                            <comboitem label="Menyerah" value="Menyerah"/>
+                        </combobox>
+                    </row>
+                </rows>
+            </grid>
+            <hlayout style="margin-top:24px;">
+                <button label="Edit" iconSclass="z-icon-edit" sclass="btn btn-info" id="editDetailBtn"/>
+                <button label="Save" iconSclass="z-icon-save" sclass="btn btn-primary" id="saveDetailBtn" visible="false"/>
+                <button label="Cancel" iconSclass="z-icon-times" sclass="btn btn-secondary" id="cancelEditBtn" visible="false"/>
+                <button label="Back to List" iconSclass="z-icon-arrow-left" sclass="btn btn-warning" id="backBtn"/>
+            </hlayout>
+        </groupbox>
+    </vlayout>
+</zk>
