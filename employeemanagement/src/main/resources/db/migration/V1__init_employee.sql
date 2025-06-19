@@ -1,5 +1,5 @@
 INSERT INTO employee (npk, name, email, phone, division, status, imageurl) VALUES
-('71478', 'NABILA KARIN', 'nabilakarin02@gmail.com', '085694517410', 'Data', 'Active', NULL),
+('71478', 'NABILA KARIN', 'nabilakarin02@gmail.com', '085694517410', 'Data', 'Inactive', NULL),
 ('71484', 'RAVEN DANIEL MARTIN', 'ravendaniel0@gmail.com', '085212411844', 'IT', 'Inactive', NULL),
 ('71485', 'ALICE SHIZUKA HUTAGAOL', 'aliceshizuka@gmail.com', '082111160512', 'Data', 'Active', NULL),
 ('71489', 'VINCENT BHARATA', 'vincentbharataa@gmail.com', '082113372884', 'IT', 'Active', NULL),
