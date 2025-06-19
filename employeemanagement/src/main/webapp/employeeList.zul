@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="template.zul"?>
+<zk>
+    <vlayout spacing="24px" style="padding:32px; font-family:'Segoe UI', sans-serif;" self="@define(content)"
+        viewModel="@id('vm') @init('com.fif.employeemanagement.viewmodel.EmployeeListViewModel')">
+        <groupbox mold="3d" width="100%" style="background:#fff; border-radius:8px;">
+            <caption label="📋 Employee List" style="font-weight:bold;"/>
+            <hlayout style="margin-bottom:16px;">
+                <button label="Add Employee" iconSclass="z-icon-plus" sclass="btn btn-primary" onClick="@command('add')"/>
+                <textbox placeholder="Search by name or email..." width="300px" value="@bind(vm.searchText)"/>
+                <button label="Search" iconSclass="z-icon-search" sclass="btn btn-primary" onClick="@command('search')"/>
+            </hlayout>
+            <listbox mold="paging" pageSize="10" width="100%" sclass="z-listbox z-listbox-striped" style="border-radius:8px; box-shadow:0 2px 8px #e0e0e0; background:#fff;"
+                model="@bind(vm.employeeList)">
+                <listhead>
+                    <listheader label="NPK" width="8%" align="center"/>
+                    <listheader label="Name" width="18%" align="center"/>
+                    <listheader label="Email" width="22%" align="center"/>
+                    <listheader label="Phone" width="14%" align="center"/>
+                    <listheader label="Division" width="12%" align="center"/>
+                    <listheader label="Status" width="12%" align="center"/>
+                    <listheader label="Action" width="14%" align="center"/>
+                </listhead>
+                <template name="model" var="emp">
+                    <listitem>
+                        <listcell label="@load(emp.npk)"/>
+                        <listcell label="@load(emp.name)"/>
+                        <listcell label="@load(emp.email)"/>
+                        <listcell label="@load(emp.phone)"/>
+                        <listcell label="@load(emp.division)"/>
+                        <listcell label="@load(emp.status)"/>
+                        <listcell>
+                            <button iconSclass="z-icon-eye" sclass="btn btn-info btn-sm" onClick="@command('detail', emp=emp)" tooltiptext="Detail"/>
+                            <button iconSclass="z-icon-trash" sclass="btn btn-danger btn-sm" onClick="@command('delete', emp=emp)" tooltiptext="Delete"/>
+                        </listcell>
+                    </listitem>
+                </template>
+            </listbox>
+        </groupbox>
+    </vlayout>
+</zk>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="template.zul"?>
+<zk>
+    <vlayout spacing="24px" style="padding:32px; font-family:'Segoe UI', sans-serif;" self="@define(content)"
+        viewModel="@id('vm') @init('com.fif.employeemanagement.viewmodel.EmployeeAddViewModel')">
+        <groupbox mold="3d" width="100%" style="background:#fff; border-radius:8px;">
+            <caption label="➕ Add Employee" style="font-weight:bold;"/>
+            <hlayout spacing="12px" style="padding:16px;">
+                <textbox id="npkBox" placeholder="NPK" width="100px" value="@bind(vm.npk)"/>
+                <textbox id="nameBox" placeholder="Full Name" width="150px" value="@bind(vm.name)"/>
+                <textbox id="emailBox" placeholder="Email Address" width="200px" value="@bind(vm.email)"/>
+                <textbox id="phoneBox" placeholder="Phone Number" width="140px" value="@bind(vm.phone)"/>
+                <combobox id="divisionBox" placeholder="Division" width="120px" selectedItem="@bind(vm.division)">
+                    <comboitem label="Data" value="Data"/>
+                    <comboitem label="IT" value="IT"/>
+                </combobox>
+                <combobox id="statusBox" placeholder="Status" width="120px" selectedItem="@bind(vm.status)">
+                    <comboitem label="Active" value="Active"/>
+                    <comboitem label="Inactive" value="Inactive"/>
+                    <comboitem label="Menyerah" value="Menyerah"/>
+                </combobox>
+                <textbox id="imageUrlBox" placeholder="Image URL" width="200px" value="@bind(vm.imageUrl)"/>
+            </hlayout>
+            <hlayout spacing="12px" style="padding:16px;">
+                <button id="saveAddBtn" label="Save" iconSclass="z-icon-plus" sclass="btn btn-primary" onClick="@command('save')"/>
+                <button id="cancelAddBtn" label="Cancel" iconSclass="z-icon-times" sclass="btn btn-warning" onClick="@command('cancel')"/>
+            </hlayout>
+        </groupbox>
+    </vlayout>
+</zk>
