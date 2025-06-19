@@ -1,5 +1,15 @@
-INSERT INTO employee (npk, name, email, phone, division, status, imageurl) VALUES
-('71478', 'NABILA KARIN', 'nabilakarin02@gmail.com', '085694517410', 'Data', 'Inactive', NULL),
+CREATE TABLE IF NOT EXISTS employee (
+    npk VARCHAR(10) PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    phone VARCHAR(15) NOT NULL,
+    division VARCHAR(50) NOT NULL,
+    status VARCHAR(20) NOT NULL CHECK (status IN ('Active', 'Inactive')),
+    image_url VARCHAR(255)
+);
+
+INSERT INTO employee (npk, name, email, phone, division, status, image_url) VALUES
+('71478', 'NABILA KARIN', 'nabilakarin02@gmail.com', '085694517410', 'Data', 'Active', NULL),
 ('71484', 'RAVEN DANIEL MARTIN', 'ravendaniel0@gmail.com', '085212411844', 'IT', 'Inactive', NULL),
 ('71485', 'ALICE SHIZUKA HUTAGAOL', 'aliceshizuka@gmail.com', '082111160512', 'Data', 'Active', NULL),
 ('71489', 'VINCENT BHARATA', 'vincentbharataa@gmail.com', '082113372884', 'IT', 'Active', NULL),
