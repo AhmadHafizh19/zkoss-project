@@ -8,15 +8,11 @@ import org.zkoss.zkplus.spring.SpringUtil;
 import com.fif.employeemanagement.model.Employee;
 import com.fif.employeemanagement.services.EmployeeService;
 import com.fif.employeemanagement.services.impl.EmployeeServiceImpl;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 public class EmployeeDetailViewModel {
-    private String npk;
-    private String name;
-    private String email;
-    private String phone;
-    private String division;
-    private String status;
-    private String imageUrl;
+    private Employee employee;
     private boolean editing = false;
     private EmployeeService employeeService = (EmployeeService) SpringUtil.getBean("employeeServiceImpl");
 
@@ -24,16 +20,7 @@ public class EmployeeDetailViewModel {
     public void init() {
         String npk = org.zkoss.zk.ui.Executions.getCurrent().getParameter("npk");
         if (npk != null) {
-            Employee emp = employeeService.getByNpk(npk).orElse(null);
-            if (emp != null) {
-                this.npk = emp.getNpk();
-                name = emp.getName();
-                email = emp.getEmail();
-                phone = emp.getPhone();
-                division = emp.getDivision();
-                status = emp.getStatus();
-                imageUrl = emp.getImageUrl();
-            }
+            employee = employeeService.getByNpk(npk).orElse(null);
         }
     }
 
@@ -44,41 +31,35 @@ public class EmployeeDetailViewModel {
     }
 
     @Command
-    @NotifyChange({"editing", "npk", "name", "email", "phone", "division", "status", "imageUrl"})
+    @NotifyChange({"editing", "employee"})
     public void save() {
-        Employee emp = new Employee(npk, name, email, phone, division, status, imageUrl);
-        employeeService.update(emp);
+        employeeService.update(employee);
         editing = false;
     }
 
     @Command
     @NotifyChange("editing")
     public void cancel() {
-        // Batalkan perubahan, reload data jika perlu
+        // Reload data dari DB jika perlu
+        if (employee != null && employee.getNpk() != null) {
+            employee = employeeService.getByNpk(employee.getNpk()).orElse(employee);
+        }
         editing = false;
     }
 
     @Command
     public void back() {
-        // Navigasi kembali ke list
         org.zkoss.zk.ui.Executions.sendRedirect("employeeList.zul");
     }
 
+    public boolean isAdmin() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        return auth != null && auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"));
+    }
+
     // Getter & Setter
-    public String getNpk() { return npk; }
-    public void setNpk(String npk) { this.npk = npk; }
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
-    public String getEmail() { return email; }
-    public void setEmail(String email) { this.email = email; }
-    public String getPhone() { return phone; }
-    public void setPhone(String phone) { this.phone = phone; }
-    public String getDivision() { return division; }
-    public void setDivision(String division) { this.division = division; }
-    public String getStatus() { return status; }
-    public void setStatus(String status) { this.status = status; }
-    public String getImageUrl() { return imageUrl; }
-    public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
+    public Employee getEmployee() { return employee; }
+    public void setEmployee(Employee employee) { this.employee = employee; }
     public boolean isEditing() { return editing; }
     public void setEditing(boolean editing) { this.editing = editing; }
 }

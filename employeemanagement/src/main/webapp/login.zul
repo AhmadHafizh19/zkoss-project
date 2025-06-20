@@ -1,0 +1,103 @@
+<zk xmlns:h="native">
+    <style>
+        .login-bg {
+        background: #fff;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        }
+        .login-card {
+        background: #fff;
+        border-radius: 18px;
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+        padding: 36px 32px 32px 32px;
+        width: 340px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        }
+        .login-title {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #6366f1;
+        margin-bottom: 8px;
+        }
+        .login-subtitle {
+        color: #64748b;
+        font-size: 1rem;
+        margin-bottom: 30px;
+        }
+        .login-label {
+        font-weight: 500;
+        color: #334155;
+        margin-bottom: 10px;
+        }
+        .login-input {
+        width: 100%;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        padding: 10px 12px;
+        font-size: 1rem;
+        margin-bottom: 18px;
+        background: #f8fafc;
+        margin-top: 10px;
+        }
+        .login-btn {
+        width: 100%;
+        background: linear-gradient(90deg, #6366f1 0%, #60a5fa 100%);
+        color: #fff;
+        font-weight: bold;
+        border: none;
+        border-radius: 8px;
+        padding: 12px 0;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: background 0.2s;
+        margin-top: 8px;
+        }
+        .login-btn:hover {
+        background: linear-gradient(90deg, #60a5fa 0%, #6366f1 100%);
+        }
+        .login-error {
+        color: #dc2626;
+        font-size: 0.98rem;
+        margin-bottom: 10px;
+        text-align: center;
+        }
+        .login-logo {
+        width: 200px; /* sesuaikan ukurannya */
+        height: auto; /* biar proporsional */
+        margin-bottom: 4px;
+        }
+        .login-footer {
+        margin-top: 24px;
+        text-align: center;
+        color: #64748b;
+        font-size: 0.97rem;
+        }
+        .login-footer .brand {
+        font-weight: bold;
+        color: #6366f1;
+        }
+    </style>
+    <div class="login-bg">
+        <div class="login-card">
+            <image src="images/fifgroup.png" class="login-logo"/>
+            <div class="login-subtitle">Sign in to your account </div>
+            <label value="Invalid username or password" class="login-error" visible="${param.error != null}"/>
+            <h:form action="${pageContext.request.contextPath}/login.zul" method="POST" style="width:100%">
+                <label class="login-label" value="Email"/>
+                <textbox name="email" class="login-input" placeholder="Enter your email"/>
+                <label class="login-label" value="Password"/>
+                <textbox name="password" type="password" class="login-input" placeholder="Enter your password"/>
+                <button type="submit" class="login-btn" label="Login"/>
+            </h:form>
+            <div class="login-footer">
+                <div style="margin-top:8px;">
+                    <label value="© 2025 PT. FIFGROUP"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</zk>

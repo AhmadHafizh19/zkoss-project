@@ -1,8 +1,11 @@
 C:\Users\71488\fifgroup-MT\streamIT\zkoss-project\employeemanagement\src\main\java\com\fif\employeemanagement\services\impl\EmployeeDao.java
+C:\Users\71488\fifgroup-MT\streamIT\zkoss-project\employeemanagement\src\main\java\com\fif\employeemanagement\config\SecurityConfig.java
 C:\Users\71488\fifgroup-MT\streamIT\zkoss-project\employeemanagement\src\main\java\com\fif\employeemanagement\model\Employee.java
 C:\Users\71488\fifgroup-MT\streamIT\zkoss-project\employeemanagement\src\main\java\com\fif\employeemanagement\viewmodel\EmployeeAddViewModel.java
 C:\Users\71488\fifgroup-MT\streamIT\zkoss-project\employeemanagement\src\main\java\com\fif\employeemanagement\viewmodel\EmployeeDetailViewModel.java
+C:\Users\71488\fifgroup-MT\streamIT\zkoss-project\employeemanagement\src\main\java\com\fif\employeemanagement\services\impl\RoleServiceImpl.java
 C:\Users\71488\fifgroup-MT\streamIT\zkoss-project\employeemanagement\src\main\java\com\fif\employeemanagement\services\impl\EmployeeServiceImpl.java
 C:\Users\71488\fifgroup-MT\streamIT\zkoss-project\employeemanagement\src\main\java\com\fif\employeemanagement\viewmodel\EmployeeListViewModel.java
-C:\Users\71488\fifgroup-MT\streamIT\zkoss-project\employeemanagement\src\main\java\com\fif\employeemanagement\model\Student.java
+C:\Users\71488\fifgroup-MT\streamIT\zkoss-project\employeemanagement\src\main\java\com\fif\employeemanagement\model\Role.java
 C:\Users\71488\fifgroup-MT\streamIT\zkoss-project\employeemanagement\src\main\java\com\fif\employeemanagement\services\EmployeeService.java
+C:\Users\71488\fifgroup-MT\streamIT\zkoss-project\employeemanagement\src\main\java\com\fif\employeemanagement\services\RoleService.java

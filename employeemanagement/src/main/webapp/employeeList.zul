@@ -6,7 +6,7 @@
         <groupbox mold="3d" width="100%" style="background:#fff; border-radius:8px;">
             <caption label="📋 Employee List" style="font-weight:bold;"/>
             <hlayout style="margin-bottom:16px;">
-                <button label="Add Employee" iconSclass="z-icon-plus" sclass="btn btn-primary" onClick="@command('add')"/>
+                <button label="Add Employee" iconSclass="z-icon-plus" sclass="btn btn-primary" onClick="@command('add')" visible="@load(vm.admin)"/>
                 <textbox placeholder="Search by name or email..." width="300px" value="@bind(vm.searchText)"/>
                 <button label="Search" iconSclass="z-icon-search" sclass="btn btn-primary" onClick="@command('search')"/>
             </hlayout>
@@ -31,7 +31,7 @@
                         <listcell label="@load(emp.status)"/>
                         <listcell>
                             <button iconSclass="z-icon-eye" sclass="btn btn-info btn-sm" onClick="@command('detail', emp=emp)" tooltiptext="Detail"/>
-                            <button iconSclass="z-icon-trash" sclass="btn btn-danger btn-sm" onClick="@command('delete', emp=emp)" tooltiptext="Delete"/>
+                            <button iconSclass="z-icon-trash" sclass="btn btn-danger btn-sm" style="background-color:#dc3545; color:white;" onClick="@command('delete', emp=emp)" tooltiptext="Delete" visible="@load(vm.admin)"/>
                         </listcell>
                     </listitem>
                 </template>

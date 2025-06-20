@@ -20,6 +20,9 @@
         letter-spacing: 1px;
         box-shadow: 0 1px 4px rgba(0,0,0,0.1);
         flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
         }
 
         .footer {
@@ -85,11 +88,38 @@
         flex: 1;
         min-height: 78.7vh;
         }
+
+        .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 16px;
+        font-size: 14px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background 0.3s;
+        }
+
+        .btn-danger {
+        background: #dc3545;
+        color: white;
+        font-weight: bold;
+        }
+
+        .btn-danger:hover {
+        background: #c82333;
+        }
     </style>
 
     <!-- Header -->
     <div sclass="header">
-        Employee Management
+        <div style="display:flex; align-items:center;">
+            <span>Employee Management System</span>
+        </div>
+        <button iconSclass="z-icon-sign-out" sclass="btn btn-danger btn-sm" style="display:flex; align-items:center; gap:8px; padding:8px 20px; font-size:15px; font-weight:bold;" onClick='Executions.sendRedirect("login.zul")'>
+        Logout
+        </button>
     </div>
 
     <!-- Main Area -->

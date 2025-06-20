@@ -1,8 +1,11 @@
-com\fif\employeemanagement\model\Student.class
+com\fif\employeemanagement\config\SecurityConfig.class
+com\fif\employeemanagement\services\impl\RoleServiceImpl.class
 com\fif\employeemanagement\model\Employee.class
 com\fif\employeemanagement\viewmodel\EmployeeListViewModel.class
 com\fif\employeemanagement\services\impl\EmployeeDao.class
 com\fif\employeemanagement\services\impl\EmployeeServiceImpl.class
 com\fif\employeemanagement\viewmodel\EmployeeAddViewModel.class
+com\fif\employeemanagement\model\Role.class
 com\fif\employeemanagement\services\EmployeeService.class
+com\fif\employeemanagement\services\RoleService.class
 com\fif\employeemanagement\viewmodel\EmployeeDetailViewModel.class

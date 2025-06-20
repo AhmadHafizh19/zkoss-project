@@ -8,36 +8,36 @@
             <caption label="👤 Employee Detail" style="font-weight:bold;"/>
             <div style="display:flex; justify-content:center; align-items:center; margin-bottom:24px;">
                 <image width="200px" height="200px" style="object-fit:cover; border-radius:12px; border:2px solid #eee; box-shadow:0 2px 8px #e0e0e0; display:block;"
-                       src="@bind(vm.imageUrl)"/>
+                       src="@bind(vm.employee.imageUrl)"/>
             </div>
             <grid width="100%">
                 <rows>
                     <row>
                         <label value="NPK" width="120px"/>
-                        <textbox width="200px" value="@bind(vm.npk)" disabled="@load(!vm.editing)"/>
+                        <textbox width="200px" value="@bind(vm.employee.npk)" disabled="@load(!vm.editing)"/>
                     </row>
                     <row>
                         <label value="Name"/>
-                        <textbox width="200px" value="@bind(vm.name)" disabled="@load(!vm.editing)"/>
+                        <textbox width="200px" value="@bind(vm.employee.name)" disabled="@load(!vm.editing)"/>
                     </row>
                     <row>
                         <label value="Email"/>
-                        <textbox width="200px" value="@bind(vm.email)" disabled="@load(!vm.editing)"/>
+                        <textbox width="200px" value="@bind(vm.employee.email)" disabled="@load(!vm.editing)"/>
                     </row>
                     <row>
                         <label value="Phone"/>
-                        <textbox width="200px" value="@bind(vm.phone)" disabled="@load(!vm.editing)"/>
+                        <textbox width="200px" value="@bind(vm.employee.phone)" disabled="@load(!vm.editing)"/>
                     </row>
                     <row>
                         <label value="Division"/>
-                        <combobox width="200px" selectedItem="@bind(vm.division)" disabled="@load(!vm.editing)">
+                        <combobox width="200px" selectedItem="@bind(vm.employee.division)" disabled="@load(!vm.editing)">
                             <comboitem label="Data" value="Data"/>
                             <comboitem label="IT" value="IT"/>
                         </combobox>
                     </row>
                     <row>
                         <label value="Status"/>
-                        <combobox width="200px" selectedItem="@bind(vm.status)" disabled="@load(!vm.editing)">
+                        <combobox width="200px" selectedItem="@bind(vm.employee.status)" disabled="@load(!vm.editing)">
                             <comboitem label="Active" value="Active"/>
                             <comboitem label="Inactive" value="Inactive"/>
                             <comboitem label="Menyerah" value="Menyerah"/>
@@ -46,9 +46,9 @@
                 </rows>
             </grid>
             <hlayout style="margin-top:24px;">
-                <button label="Edit" iconSclass="z-icon-edit" sclass="btn btn-info" visible="@load(!vm.editing)" onClick="@command('edit')"/>
-                <button label="Save" iconSclass="z-icon-save" sclass="btn btn-primary" visible="@load(vm.editing)" onClick="@command('save')"/>
-                <button label="Cancel" iconSclass="z-icon-times" sclass="btn btn-secondary" visible="@load(vm.editing)" onClick="@command('cancel')"/>
+                <button label="Edit" iconSclass="z-icon-edit" sclass="btn btn-info" visible="@load(!vm.editing and vm.admin)" onClick="@command('edit')"/>
+                <button label="Save" iconSclass="z-icon-save" sclass="btn btn-primary" visible="@load(vm.editing and vm.admin)" onClick="@command('save')"/>
+                <button label="Cancel" iconSclass="z-icon-times" sclass="btn btn-secondary" visible="@load(vm.editing and vm.admin)" onClick="@command('cancel')"/>
                 <button label="Back to List" iconSclass="z-icon-arrow-left" sclass="btn btn-warning" onClick="@command('back')"/>
             </hlayout>
         </groupbox>

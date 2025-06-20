@@ -4,10 +4,17 @@ import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.NotifyChange;
 import org.zkoss.bind.annotation.Init;
 import org.zkoss.zkplus.spring.SpringUtil;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.fif.employeemanagement.model.Employee;
+import com.fif.employeemanagement.model.Role;
 import com.fif.employeemanagement.services.EmployeeService;
+import com.fif.employeemanagement.services.RoleService;
 import com.fif.employeemanagement.services.impl.EmployeeServiceImpl;
+
+import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class EmployeeAddViewModel {
     private String npk;
@@ -17,19 +24,39 @@ public class EmployeeAddViewModel {
     private String division;
     private String status;
     private String imageUrl;
+    private String password;
     private EmployeeService employeeService = (EmployeeService) SpringUtil.getBean("employeeServiceImpl");
+    private Set<Role> selectedRoles = new HashSet<>();
+    private List<Role> allRoles;
+    private RoleService roleService = (RoleService) SpringUtil.getBean("roleServiceImpl");
+    private Role selectedRole;
 
     @Init
+    @NotifyChange({"allRoles"})
     public void init() {
-        // Inisialisasi jika diperlukan
+        allRoles = roleService.getAll();
     }
+    public Role getSelectedRole() { return selectedRole; }
+    public void setSelectedRole(Role selectedRole) { this.selectedRole = selectedRole; }
 
     @Command
-    @NotifyChange({"npk", "name", "email", "phone", "division", "status", "imageUrl"})
+    @NotifyChange({"npk", "name", "email", "phone", "division", "status", "imageUrl", "selectedRoles", "password"})
     public void save() {
-        Employee emp = new Employee(npk, name, email, phone, division, status, imageUrl);
+        if (selectedRole == null) {
+            Role userRole = roleService.getByName("USER");
+            selectedRole = userRole;
+        }
+        selectedRoles = new HashSet<>();
+        if (selectedRole != null) {
+            selectedRoles.add(selectedRole);
+        }
+        String pwd = (password == null || password.isEmpty()) ? "password" : password;
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        String hashedPwd = encoder.encode(pwd);
+        Employee emp = new Employee(null, npk, name, email, phone, division, status, imageUrl, hashedPwd, selectedRoles);
         employeeService.add(emp);
-        npk = name = email = phone = division = status = imageUrl = null;
+        npk = name = email = phone = division = status = imageUrl = password = null;
+        selectedRoles = new HashSet<>();
         org.zkoss.zk.ui.Executions.sendRedirect("employeeList.zul");
     }
 
@@ -55,4 +82,10 @@ public class EmployeeAddViewModel {
     public void setStatus(String status) { this.status = status; }
     public String getImageUrl() { return imageUrl; }
     public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
+    public String getPassword() { return password; }
+    public void setPassword(String password) { this.password = password; }
+    public Set<Role> getSelectedRoles() { return selectedRoles; }
+    public void setSelectedRoles(Set<Role> selectedRoles) { this.selectedRoles = selectedRoles; }
+    public List<Role> getAllRoles() { return allRoles; }
+    public void setAllRoles(List<Role> allRoles) { this.allRoles = allRoles; }
 }

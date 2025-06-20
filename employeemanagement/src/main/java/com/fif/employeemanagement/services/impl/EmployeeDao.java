@@ -5,12 +5,14 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
 public class EmployeeDao {
+
     @PersistenceContext
     private EntityManager em;
 
@@ -22,7 +24,11 @@ public class EmployeeDao {
 
     @Transactional(readOnly = true)
     public Employee getByNpk(String npk) {
-        return em.find(Employee.class, npk);
+        List<Employee> result = em.createQuery(
+                        "SELECT e FROM Employee e WHERE e.npk = :npk", Employee.class)
+                .setParameter("npk", npk)
+                .getResultList();
+        return result.isEmpty() ? null : result.get(0);
     }
 
     @Transactional
@@ -37,7 +43,7 @@ public class EmployeeDao {
 
     @Transactional
     public void delete(String npk) {
-        Employee emp = em.find(Employee.class, npk);
+        Employee emp = getByNpk(npk);
         if (emp != null) {
             em.remove(emp);
         }
@@ -46,8 +52,21 @@ public class EmployeeDao {
     @Transactional(readOnly = true)
     public List<Employee> search(String keyword) {
         TypedQuery<Employee> query = em.createQuery(
-            "SELECT e FROM Employee e WHERE LOWER(e.name) LIKE :kw OR LOWER(e.email) LIKE :kw", Employee.class);
+                "SELECT e FROM Employee e WHERE LOWER(e.name) LIKE :kw OR LOWER(e.email) LIKE :kw", Employee.class);
         query.setParameter("kw", "%" + keyword.toLowerCase() + "%");
         return query.getResultList();
+    }
+
+    // ✅ Tambahkan method ini agar bisa login pakai email
+    @Transactional(readOnly = true)
+    public Employee getByEmail(String email) {
+        try {
+            TypedQuery<Employee> query = em.createQuery(
+                    "SELECT e FROM Employee e WHERE e.email = :email", Employee.class);
+            query.setParameter("email", email);
+            return query.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 }

@@ -7,6 +7,8 @@ import com.fif.employeemanagement.model.Employee;
 import com.fif.employeemanagement.services.EmployeeService;
 import org.zkoss.zkplus.spring.SpringUtil;
 import java.util.List;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 public class EmployeeListViewModel {
     private String searchText;
@@ -42,6 +44,11 @@ public class EmployeeListViewModel {
     public void delete(@org.zkoss.bind.annotation.BindingParam("emp") Employee emp) {
         employeeService.delete(emp.getNpk());
         employeeList = employeeService.getAll();
+    }
+
+    public boolean isAdmin() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        return auth != null && auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"));
     }
 
     // Getter & Setter
