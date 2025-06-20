@@ -6,9 +6,10 @@
              viewModel="@id('vm') @init('com.fif.employeemanagement.viewmodel.EmployeeDetailViewModel')">
         <groupbox mold="3d" width="100%" style="background:#fff; border-radius:8px;">
             <caption label="👤 Employee Detail" style="font-weight:bold;"/>
-            <div style="display:flex; justify-content:center; align-items:center; margin-bottom:24px;">
-                <image width="200px" height="200px" style="object-fit:cover; border-radius:12px; border:2px solid #eee; box-shadow:0 2px 8px #e0e0e0; display:block;"
+            <div style="display:flex; justify-content:center; align-items:center; margin-bottom:24px; flex-direction:column;">
+                <image width="200px" height="200px" style="object-fit:cover; border-radius:12px; border:2px solid #eee; box-shadow:0 2px 8px #e0e0e0; display:block; margin-bottom:8px;"
                        src="@bind(vm.employee.imageUrl)"/>
+                <fileupload label="Upload / Change Image" iconSclass="z-icon-upload" sclass="btn btn-info btn-sm" onUpload="@command('uploadImage', event=event)" visible="@load(vm.editing and vm.isAdmin())" style="display:flex; align-items:center; gap:8px; padding:8px 20px; font-size:15px;"/>
             </div>
             <grid width="100%">
                 <rows>
@@ -46,9 +47,9 @@
                 </rows>
             </grid>
             <hlayout style="margin-top:24px;">
-                <button label="Edit" iconSclass="z-icon-edit" sclass="btn btn-info" visible="@load(!vm.editing and vm.admin)" onClick="@command('edit')"/>
-                <button label="Save" iconSclass="z-icon-save" sclass="btn btn-primary" visible="@load(vm.editing and vm.admin)" onClick="@command('save')"/>
-                <button label="Cancel" iconSclass="z-icon-times" sclass="btn btn-secondary" visible="@load(vm.editing and vm.admin)" onClick="@command('cancel')"/>
+                <button label="Edit" iconSclass="z-icon-edit" sclass="btn btn-info" visible="@load(!vm.editing and vm.isAdmin)" onClick="@command('edit')"/>
+                <button label="Save" iconSclass="z-icon-save" sclass="btn btn-primary" visible="@load(vm.editing and vm.isAdmin)" onClick="@command('save')"/>
+                <button label="Cancel" iconSclass="z-icon-times" sclass="btn btn-secondary" visible="@load(vm.editing and vm.isAdmin)" onClick="@command('cancel')"/>
                 <button label="Back to List" iconSclass="z-icon-arrow-left" sclass="btn btn-warning" onClick="@command('back')"/>
             </hlayout>
         </groupbox>

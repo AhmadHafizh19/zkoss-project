@@ -5,11 +5,23 @@
         viewModel="@id('vm') @init('com.fif.employeemanagement.viewmodel.EmployeeListViewModel')">
         <groupbox mold="3d" width="100%" style="background:#fff; border-radius:8px;">
             <caption label="📋 Employee List" style="font-weight:bold;"/>
-            <hlayout style="margin-bottom:16px;">
-                <button label="Add Employee" iconSclass="z-icon-plus" sclass="btn btn-primary" onClick="@command('add')" visible="@load(vm.admin)"/>
-                <textbox placeholder="Search by name or email..." width="300px" value="@bind(vm.searchText)"/>
-                <button label="Search" iconSclass="z-icon-search" sclass="btn btn-primary" onClick="@command('search')"/>
-            </hlayout>
+            <hbox width="100%" style="margin-bottom:16px;" pack="start" align="center">
+                <!-- Search Area -->
+                <hbox spacing="8px">
+                    <textbox placeholder="Search by name or email..." width="300px" value="@bind(vm.searchText)"/>
+                    <button label="Search" iconSclass="z-icon-search"
+                            style="display:flex; align-items:center; gap:8px; padding:8px 20px; font-size:15px;"
+                            sclass="btn btn-primary" onClick="@command('search')"/>
+                </hbox>
+
+                <!-- Spacer: Gunakan div dengan hflex -->
+                <div hflex="1"></div>
+
+                <!-- Add Employee Button -->
+                <button label="Add Employee" iconSclass="z-icon-plus"
+                        style="background-color:#28a745; color:white; display:flex; align-items:center; gap:8px; padding:8px 20px; font-size:15px;"
+                        sclass="btn btn-primary" onClick="@command('add')" visible="@load(vm.isAdmin())"/>
+            </hbox>
             <listbox mold="paging" pageSize="10" width="100%" sclass="z-listbox z-listbox-striped" style="border-radius:8px; box-shadow:0 2px 8px #e0e0e0; background:#fff;"
                 model="@bind(vm.employeeList)">
                 <listhead>
@@ -31,7 +43,7 @@
                         <listcell label="@load(emp.status)"/>
                         <listcell>
                             <button iconSclass="z-icon-eye" sclass="btn btn-info btn-sm" onClick="@command('detail', emp=emp)" tooltiptext="Detail"/>
-                            <button iconSclass="z-icon-trash" sclass="btn btn-danger btn-sm" style="background-color:#dc3545; color:white;" onClick="@command('delete', emp=emp)" tooltiptext="Delete" visible="@load(vm.admin)"/>
+                            <button iconSclass="z-icon-trash" sclass="btn btn-danger btn-sm" style="background-color:#dc3545; color:white;" onClick="@command('delete', emp=emp)" tooltiptext="Delete" visible="@load(vm.isAdmin())"/>
                         </listcell>
                     </listitem>
                 </template>

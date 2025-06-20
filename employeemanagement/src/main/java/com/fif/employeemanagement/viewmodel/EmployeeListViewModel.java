@@ -51,6 +51,10 @@ public class EmployeeListViewModel {
         return auth != null && auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"));
     }
 
+    public boolean getIsAdmin() {
+        return isAdmin();
+    }
+
     // Getter & Setter
     public String getSearchText() { return searchText; }
     public void setSearchText(String searchText) { this.searchText = searchText; }

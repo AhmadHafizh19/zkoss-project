@@ -15,6 +15,14 @@ import com.fif.employeemanagement.services.impl.EmployeeServiceImpl;
 import java.util.List;
 import java.util.HashSet;
 import java.util.Set;
+import org.zkoss.bind.annotation.ContextParam;
+import org.zkoss.bind.annotation.ContextType;
+import org.zkoss.zk.ui.event.UploadEvent;
+import org.zkoss.zk.ui.util.Clients;
+import org.zkoss.util.media.Media;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class EmployeeAddViewModel {
     private String npk;
@@ -65,6 +73,29 @@ public class EmployeeAddViewModel {
     public void cancel() {
         npk = name = email = phone = division = status = imageUrl = null;
         org.zkoss.zk.ui.Executions.sendRedirect("employeeList.zul");
+    }
+
+    @Command
+    @NotifyChange("imageUrl")
+    public void uploadImage(@ContextParam(ContextType.TRIGGER_EVENT) UploadEvent event) {
+        Media media = event.getMedia();
+        if (media != null && media.isBinary()) {
+            try {
+                String ext = media.getFormat();
+                String fileName = "emp_" + System.currentTimeMillis() + "." + ext;
+                String realPath = org.zkoss.zk.ui.Executions.getCurrent().getDesktop().getWebApp().getRealPath("/images/") + File.separator + fileName;
+                File file = new File(realPath);
+                try (FileOutputStream fos = new FileOutputStream(file)) {
+                    fos.write(media.getByteData());
+                }
+                this.imageUrl = "/images/" + fileName;
+                Clients.showNotification("Image uploaded successfully!", "info", null, "top_center", 2000);
+            } catch (IOException e) {
+                Clients.showNotification("Failed to upload image!", "error", null, "top_center", 2000);
+            }
+        } else {
+            Clients.showNotification("Please upload a valid image file!", "warning", null, "top_center", 2000);
+        }
     }
 
     // Getter & Setter

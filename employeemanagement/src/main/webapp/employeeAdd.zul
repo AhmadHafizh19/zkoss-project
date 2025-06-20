@@ -9,40 +9,89 @@
         <groupbox mold="3d" width="100%" style="background:#fff; border-radius:8px;">
             <caption label="➕ Add Employee" style="font-weight:bold;" />
 
-            <vlayout spacing="12px" style="padding:16px;">
-                <hlayout spacing="12px">
-                    <textbox id="npkBox" placeholder="NPK" width="100px" value="@bind(vm.npk)" />
-                    <textbox id="nameBox" placeholder="Full Name" width="150px" value="@bind(vm.name)" />
-                    <textbox id="emailBox" placeholder="Email Address" width="200px" value="@bind(vm.email)" />
-                    <textbox id="phoneBox" placeholder="Phone Number" width="140px" value="@bind(vm.phone)" />
-                    <combobox id="divisionBox" placeholder="Division" width="120px" selectedItem="@bind(vm.division)">
-                        <comboitem label="Data" value="Data" />
-                        <comboitem label="IT" value="IT" />
-                    </combobox>
-                    <combobox id="statusBox" placeholder="Status" width="120px" selectedItem="@bind(vm.status)">
-                        <comboitem label="Active" value="Active" />
-                        <comboitem label="Inactive" value="Inactive" />
-                        <comboitem label="Menyerah" value="Menyerah" />
-                    </combobox>
+            <vlayout spacing="16px" style="padding:16px;">
+                <!-- Form Inputs -->
+                <grid>
+                    <columns>
+                        <column width="15%"/>
+                        <column width="35%"/>
+                        <column width="15%"/>
+                        <column width="35%"/>
+                    </columns>
+                    <rows>
+                        <row>
+                            <label value="NPK"/>
+                            <textbox id="npkBox" placeholder="NPK" value="@bind(vm.npk)" width="100%"/>
+                            <label value="Full Name"/>
+                            <textbox id="nameBox" placeholder="Full Name" value="@bind(vm.name)" width="100%"/>
+                        </row>
+                        <row>
+                            <label value="Email"/>
+                            <textbox id="emailBox" placeholder="Email Address" value="@bind(vm.email)" width="100%"/>
+                            <label value="Phone"/>
+                            <textbox id="phoneBox" placeholder="Phone Number" value="@bind(vm.phone)" width="100%"/>
+                        </row>
+                        <row>
+                            <label value="Division"/>
+                            <combobox id="divisionBox" placeholder="Division" selectedItem="@bind(vm.division)" width="100%">
+                                <comboitem label="Data" value="Data"/>
+                                <comboitem label="IT" value="IT"/>
+                            </combobox>
+                            <label value="Status"/>
+                            <combobox id="statusBox" placeholder="Status" selectedItem="@bind(vm.status)" width="100%">
+                                <comboitem label="Active" value="Active"/>
+                                <comboitem label="Inactive" value="Inactive"/>
+                                <comboitem label="Menyerah" value="Menyerah"/>
+                            </combobox>
+                        </row>
+                        <row>
+                            <label value="Role"/>
+                            <combobox id="roleBox"
+                                      placeholder="Role"
+                                      selectedItem="@bind(vm.selectedRole)"
+                                      model="@bind(vm.allRoles)"
+                                      width="100%">
+                                <template name="model" var="role">
+                                    <comboitem label="@load(role.name)" value="@load(role)"/>
+                                </template>
+                            </combobox>
+                            <label value=""/>
+                            <label value=""/>
+                        </row>
+                    </rows>
+                </grid>
+
+                <!-- Image Upload -->
+                <hlayout spacing="16px" valign="start">
+                    <vlayout>
+                        <label value="Image" style="font-weight:500;"/>
+                        <image id="previewImg" width="80px" height="80px"
+                               style="object-fit:cover; border-radius:8px; border:1px solid #eee;"/>
+                        <fileupload label="Upload Image"
+                                    iconSclass="z-icon-upload"
+                                    sclass="btn btn-info btn-sm"
+                                    onUpload="@command('uploadImage', event=event)"/>
+                    </vlayout>
+                    <textbox id="imageUrlBox"
+                             placeholder="Image URL"
+                             value="@bind(vm.imageUrl)"
+                             visible="false"
+                             width="300px"/>
                 </hlayout>
 
-                <hlayout spacing="12px">
-                    <textbox id="imageUrlBox" placeholder="Image URL" width="300px" value="@bind(vm.imageUrl)" />
-                    <combobox id="roleBox"
-                              placeholder="Role"
-                              width="200px"
-                              selectedItem="@bind(vm.selectedRole)"
-                              model="@bind(vm.allRoles)">
-                        <template name="model" var="role">
-                            <comboitem label="@load(role.name)" value="@load(role)" />
-                        </template>
-                    </combobox>
-                </hlayout>
-
-                <hlayout spacing="12px">
-                    <button id="saveAddBtn" label="Save" iconSclass="z-icon-plus" sclass="btn btn-primary" onClick="@command('save')" />
-                    <button id="cancelAddBtn" label="Cancel" iconSclass="z-icon-times" sclass="btn btn-warning" onClick="@command('cancel')" />
-                </hlayout>
+                <!-- Action Buttons -->
+                <hbox pack="end" spacing="12px" style="margin-top:8px;">
+                    <button id="saveAddBtn"
+                            label="Save"
+                            iconSclass="z-icon-check"
+                            sclass="btn btn-primary"
+                            onClick="@command('save')"/>
+                    <button id="cancelAddBtn"
+                            label="Cancel"
+                            iconSclass="z-icon-times"
+                            sclass="btn btn-warning"
+                            onClick="@command('cancel')"/>
+                </hbox>
             </vlayout>
         </groupbox>
     </vlayout>
